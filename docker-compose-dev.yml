@@ -1,0 +1,25 @@
+version: '3.8'
+#docker stack deploy -c docker-compose-dev.yml ip-change-alert-dev --with-registry-auth
+
+services:
+    python:
+        image: punder/ip-change-alert
+        command: tail -F anything
+        volumes:
+            - ip-change-data:/tmp
+            - ./:/app
+        secrets:
+            - telegram-secrets
+        hostname: "{{.Node.Hostname}}"
+
+        deploy:
+            placement:
+                constraints:
+                    - "node.hostname==docker3-ubuntu"
+
+secrets:
+   telegram-secrets:
+     file: .env
+
+volumes:
+    ip-change-data:

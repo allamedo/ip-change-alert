@@ -1,0 +1,25 @@
+version: '3.8'
+#docker stack deploy -c docker-compose.yml ip-change-alert --with-registry-auth
+
+services:
+    python:
+        image: punder/ip-change-alert
+        restart: always
+        volumes:
+            - ip-change-data:/tmp
+        secrets:
+            - telegram-secrets
+        hostname: "{{.Node.Hostname}}"
+        logging:
+            driver: "gcplogs"
+            options:
+                gcp-project: "arctic-sound-262110"
+        deploy:
+            mode: global
+
+secrets:
+   telegram-secrets:
+     file: .env
+
+volumes:
+    ip-change-data:
