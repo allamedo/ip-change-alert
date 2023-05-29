@@ -3,7 +3,7 @@ version: '3.8'
 
 services:
     python:
-        image: punder/ip-change-alert
+        image: punder/ip-change-alert:docker-compose
         command: tail -F anything
         volumes:
             - ip-change-data:/tmp

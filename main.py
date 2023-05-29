@@ -5,6 +5,8 @@ import time, os
 
 db = TinyDB('/tmp/ip_database.json')
 
+check_time = int(os.getenv("IP_CHECK_MINUTES", 60))
+
 def get_public_ip():
     return ip.get()
 
@@ -40,4 +42,4 @@ if __name__ == "__main__":
 
     while(True):
         main()
-        time.sleep(60*30)
+        time.sleep(60*check_time)

@@ -3,10 +3,12 @@ version: '3.8'
 
 services:
     python:
-        image: punder/ip-change-alert
+        image: punder/ip-change-alert:docker-compose
         restart: always
         volumes:
             - ip-change-data:/tmp
+        environment:
+            IP_CHECK_MINUTES: 30
         secrets:
             - telegram-secrets
         hostname: "{{.Node.Hostname}}"
