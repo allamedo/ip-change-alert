@@ -5,6 +5,7 @@ services:
     python:
         image: punder/ip-change-alert:docker-compose
         restart: always
+        command: python -u main.py
         volumes:
             - ip-change-data:/tmp
         environment:
