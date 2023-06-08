@@ -9,7 +9,7 @@ services:
         volumes:
             - ip-change-data:/tmp
         environment:
-            IP_CHECK_MINUTES: 30
+            IP_CHECK_MINUTES: 60
         secrets:
             - telegram-secrets
         hostname: "{{.Node.Hostname}}"
