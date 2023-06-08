@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ip-change-alert
+spec:
+  selector:
+    matchLabels:
+      app: ip-change-alert
+  template:
+    metadata:
+      labels:
+        app: ip-change-alert
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: ip-change-alert-pvc
+      containers:
+        - name: my-container
+          image: punder/ip-change-alert:k8s
+          imagePullPolicy: Always
+          envFrom:
+          - secretRef:
+              name: telegram-login
+          volumeMounts:
+            - name: data
+              mountPath: /data

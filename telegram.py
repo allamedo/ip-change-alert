@@ -1,10 +1,7 @@
-import requests
-from dotenv import dotenv_values
+import requests, os
 
-config = dotenv_values("/run/secrets/telegram-secrets")
-
-bot_token = config["TELEGRAM_BOT_TOKEN"]
-chat_id = config["TELEGRAM_CHAT_ID"]
+bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
+chat_id = int(os.getenv("TELEGRAM_CHAT_ID"))
 
 def send_message(message,url):
     req_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"

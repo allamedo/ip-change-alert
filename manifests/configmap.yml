@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ip-change-alert-config
+data:
+  IP_CHECK_MINUTES: "60"
+  
